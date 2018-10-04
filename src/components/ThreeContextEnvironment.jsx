@@ -31,7 +31,7 @@ export default class Renderer extends React.Component {
     window.removeEventListener('resize', this.resize);
   }
 
-  canvasDidMount(canvas) {
+  canvasDidMount = canvas => {
     window.renderer = this;
     if (!canvas) return;
     const renderer = this.renderer = new THREE.WebGLRenderer({canvas});
@@ -46,7 +46,7 @@ export default class Renderer extends React.Component {
     const {canvas, renderer: r} = this;
     const {devicePixelRatio: dpr} = window;
     const {innerWidth: width, innerHeight: height} = window;
-      console.log(window);
+      console.log('LOOK AT ME', window);
     this.setState({width, height});
     r.setPixelRatio(dpr);
     r.setSize(width, height);
@@ -140,8 +140,8 @@ export class OrbitalCamera extends React.Component {
   }
 
   update({position, renderer: {Renderer, width, height}}) {
-    console.log('update', width, height, Renderer);
     if(!width || !height || !Renderer) return;
+    console.log('update', width, height, Renderer);
     if(!this.camera)
       this.camera = new THREE.PerspectiveCamera(60, width / height, 1, 1000);
     const {camera} = this;

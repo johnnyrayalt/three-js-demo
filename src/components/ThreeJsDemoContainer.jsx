@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import css from 'styled-jsx/css'
 import Three, { Scene, OrbitalCamera, Mesh, DirectionalLight, AmbientLight } from './ThreeContextEnvironment';
 import { v4 } from 'uuid';
 
@@ -19,13 +20,18 @@ const randomPosition = () => [
 ];
 const positions = new Array(50).fill('x').map(randomPosition);
 
-const informationStyle = {
-  paddingBottom:'10px',
-};
+const threeJsDemoContainerContainer = {
+    fontSize:'24px',
+    fontWeight:'bold',
+    marginTop:'1em',
+    marginBottom:'1em',
+    marginLeft:'20px',
+    marginRight:'20px'
+}
 
-function ThreeJsDemoContainer(props) {
+function ThreeJsDemoContainer() {
   return(
-    <div className='ThreeJsDemoContainerContainer'>
+    <div style={threeJsDemoContainerContainer}>
       <div style={fullWindow}>
         <Three style={fullWindow}>
           <Scene fog={new THREE.FogExp2( 0xffffff, 0.002 )}>
@@ -46,14 +52,6 @@ function ThreeJsDemoContainer(props) {
           </Scene>
         </Three>
       </div>
-      <style jsx>{`
-        .ThreeJsDemoContainerContainer {
-          font-family: 'Raleway', sans-serif;
-          font-size:24px;
-          font-weight:bold;
-          margin: 1em 20px;
-        }
-      `}</style>
     </div>
   );
 }

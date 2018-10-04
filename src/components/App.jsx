@@ -5,14 +5,12 @@ import ThreeJsDemoContainer from './ThreeJsDemoContainer';
 function App() {
   return (
     <div>
-      <Router>
-        <Switch>
-          <Route exact path='/' component={ThreeJsDemoContainer} />
-          <Route path='*' render={() =>
-            <Redirect to='/' />
-          } />
-        </Switch>
-      </Router>
+      <Switch>
+        <Route exact path='/' component={ThreeJsDemoContainer} />
+        <Route path='*' render={() =>
+          <Redirect to='/' />
+        } />
+      </Switch>
     </div>
   );
 }

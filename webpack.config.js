@@ -2,6 +2,7 @@ const { resolve } = require('path');
 
 const webpack = require('webpack');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const config = {
   devtool: 'cheap-module-eval-source-map',
@@ -34,6 +35,16 @@ const config = {
   module: {
     rules: [
       {
+        test: /\.(html)$/,
+        use: [{
+          loader: 'html-loader',
+          options: {
+            attrs: [':data-src'],
+            minimize: true
+          }
+        }]
+      },
+      {
         test: /\.jsx?$/,
         enforce: "pre",
         loader: "eslint-loader",
@@ -58,6 +69,10 @@ const config = {
             "transform-es2015-destructuring",
           ]
         }
+      },
+      {
+        test: /\.css$/,
+        loader: 'style-loader'
       },
       {
         test: /\.(png|gif|jp(e*)g|svg)$/,
@@ -85,6 +100,13 @@ const config = {
     }),
     new webpack.optimize.ModuleConcatenationPlugin(),
     new webpack.HotModuleReplacementPlugin(),
+    new UglifyJsPlugin(),
+    new HtmlWebpackPlugin({
+      template:'./../template.ejs',
+      appMountId: 'react-app-root',
+      title: 'Johnny Ray Alt',
+      filename: resolve(__dirname, "dist", "index.html"),
+    })
   ]
 };
 
