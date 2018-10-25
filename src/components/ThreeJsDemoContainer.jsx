@@ -16,9 +16,10 @@ const randomPosition = () => [
 const positions = new Array(50).fill('x').map(randomPosition)
 
 const threeJsDemoContainerContainer = {
-  width:'100vw',
-  height:'100vw',
-  margin:0
+  width:'300px',
+  height:'300px',
+  margin:0,
+  overflow:'hidden'
 }
 
 function ThreeJsDemoContainer(props) {

@@ -28,19 +28,22 @@ export default class Renderer extends React.Component {
 
   componentWillUnmount() {
     cancelAnimationFrame(this.raf)
-    // window.removeEventListener('resize', this.resize)
   }
 
+
   canvasDidMount = canvas => {
+    const onWindowResize = () => {
+      setTimeout(()=> {
+        this.resize()
+      }, 2000)
+    }
     window.renderer = this
     if (!canvas) return
     const renderer = this.renderer = new THREE.WebGLRenderer({canvas})
     renderer.setClearColor(0xffffff)
     this.setState({renderer})
     this.canvas = canvas
-    window.addEventListener('resize', ()=> {
-      this.resize()
-    })
+    window.addEventListener('resize', onWindowResize)
     this.resize()
     this.frame()
   }

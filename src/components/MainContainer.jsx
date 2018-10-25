@@ -16,11 +16,10 @@ class MainContainer extends React.Component {
 
   render() {
     return(
-      <Grid
-        width={'25vw'}>
-        <ThreeJsDemoContainer colors={this.state.colors.red}></ThreeJsDemoContainer>
-        <ThreeJsDemoContainer colors={this.state.colors.blue}></ThreeJsDemoContainer>
-      </Grid>
+      <div>
+          <ThreeJsDemoContainer colors={this.state.colors.red}></ThreeJsDemoContainer>
+          <ThreeJsDemoContainer colors={this.state.colors.blue}></ThreeJsDemoContainer>
+      </div>
     )
   }
 }
