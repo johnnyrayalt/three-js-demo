@@ -15,15 +15,16 @@
   "license": "MIT",
   "dependencies": {
     "babel-preset-stage-1": "^6.24.1",
+    "file-loader": "^1.1.6",
+    "imports-loader": "^0.8.0",
     "prop-types": "^15.5.10",
     "react": "16.5.2",
+    "react-css-grid": "^2.0.0-0",
     "react-dom": "16.5.2",
     "react-hot-loader": "4.3.11",
     "react-router-dom": "4.3.0",
-    "three": "^0.97.0",
-    "file-loader": "^1.1.6",
-    "imports-loader": "^0.8.0",
     "styled-jsx": "^2.2.1",
+    "three": "^0.97.0",
     "three-orbit-controls-loader": "^1.0.1"
   },
   "devDependencies": {

@@ -1,12 +1,12 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import ThreeJsDemoContainer from './ThreeJsDemoContainer';
+import MainContainer from './MainContainer'
 
 function App() {
   return (
     <div>
       <Switch>
-        <Route exact path='/' component={ThreeJsDemoContainer} />
+        <Route exact path='/' component={MainContainer} />
         <Route path='*' render={() =>
           <Redirect to='/' />
         } />

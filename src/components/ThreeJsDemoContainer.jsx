@@ -1,39 +1,30 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import css from 'styled-jsx/css'
-import Three, { Scene, OrbitalCamera, Mesh, DirectionalLight, AmbientLight } from './ThreeContextEnvironment';
-import { v4 } from 'uuid';
+import Three, { Scene, OrbitalCamera, Mesh, DirectionalLight, AmbientLight } from './ThreeContextEnvironment'
+import { v4 } from 'uuid'
+import PropTypes from 'prop-types'
 
-const THREE = require('three');
+const THREE = require('three')
 
-const fullWindow = {
-  width: '50vw',
-  height: '50vh',
-};
-
-const platform = new THREE.SphereGeometry( 20, 170, 170 );
-const material = new THREE.MeshPhongMaterial( { color: 0x0042ff, flatShading: true } );
+const platform = new THREE.SphereGeometry( 20, 170, 170 )
 
 const randomPosition = () => [
    ( Math.random() - 0.5 ) * 1000,
    ( Math.random() - 0.5 ) * 1000,
    ( Math.random() - 0.5 ) * 1000
-];
-const positions = new Array(50).fill('x').map(randomPosition);
+]
+const positions = new Array(50).fill('x').map(randomPosition)
 
 const threeJsDemoContainerContainer = {
-    fontSize:'24px',
-    fontWeight:'bold',
-    marginTop:'1em',
-    marginBottom:'1em',
-    marginLeft:'20px',
-    marginRight:'20px'
+  width:'100vw',
+  height:'100vw',
+  margin:0
 }
 
-function ThreeJsDemoContainer() {
+function ThreeJsDemoContainer(props) {
   return(
     <div style={threeJsDemoContainerContainer}>
-      <div style={fullWindow}>
-        <Three style={fullWindow}>
+        <Three>
           <Scene fog={new THREE.FogExp2( 0xffffff, 0.002 )}>
             <OrbitalCamera enableZoom={false} position={[0, 0, 500]} />
             <DirectionalLight color={0xffffff}
@@ -45,15 +36,18 @@ function ThreeJsDemoContainer() {
               positions.map(position =>
                 <Mesh key={position}
                   geometry={platform}
-                  material={material}
+                  material={new THREE.MeshPhongMaterial( { color: props.colors , flatShading: true } )}
                   position={position} />
               )
             }
           </Scene>
         </Three>
-      </div>
     </div>
-  );
+  )
 }
 
-export default ThreeJsDemoContainer;
+ThreeJsDemoContainer.propTypes = {
+  colors: PropTypes.number
+}
+
+export default ThreeJsDemoContainer
