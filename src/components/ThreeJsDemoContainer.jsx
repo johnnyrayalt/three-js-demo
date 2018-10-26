@@ -6,8 +6,6 @@ import PropTypes from 'prop-types'
 
 const THREE = require('three')
 
-const platform = new THREE.SphereGeometry( 20, 170, 170 )
-
 const randomPosition = () => [
    ( Math.random() - 0.5 ) * 1000,
    ( Math.random() - 0.5 ) * 1000,
@@ -16,8 +14,8 @@ const randomPosition = () => [
 const positions = new Array(50).fill('x').map(randomPosition)
 
 const threeJsDemoContainerContainer = {
-  width:'300px',
-  height:'300px',
+  width:'600px',
+  height:'600px',
   margin:0,
   overflow:'hidden'
 }
@@ -36,8 +34,8 @@ function ThreeJsDemoContainer(props) {
             {
               positions.map(position =>
                 <Mesh key={position}
-                  geometry={platform}
-                  material={new THREE.MeshPhongMaterial( { color: props.colors , flatShading: true } )}
+                  geometry={props.platform}
+                  material={props.shading}
                   position={position} />
               )
             }
@@ -48,7 +46,8 @@ function ThreeJsDemoContainer(props) {
 }
 
 ThreeJsDemoContainer.propTypes = {
-  colors: PropTypes.number
+  platform: PropTypes.object,
+  shading: PropTypes.object
 }
 
 export default ThreeJsDemoContainer

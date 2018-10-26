@@ -2,23 +2,24 @@ import React from 'react'
 import ThreeJsDemoContainer from './ThreeJsDemoContainer'
 import Grid from 'react-css-grid'
 import PropTypes from 'prop-types'
+import * as THREE from 'three'
 
 class MainContainer extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      colors: {
-        red: 0x4200ff,
-        blue: 0x0042ff
-      }
+      platform: new THREE.SphereGeometry( 20, 170, 170 ),
+      shading: new THREE.MeshPhongMaterial( { color: 0x4200ff , flatShading: true } )
     }
   }
 
   render() {
     return(
       <div>
-          <ThreeJsDemoContainer colors={this.state.colors.red}></ThreeJsDemoContainer>
-          <ThreeJsDemoContainer colors={this.state.colors.blue}></ThreeJsDemoContainer>
+          <ThreeJsDemoContainer
+            material={this.state.platform}
+            shading={this.state.shading}>
+          </ThreeJsDemoContainer>
       </div>
     )
   }

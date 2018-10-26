@@ -7,12 +7,16 @@ import * as THREE from 'three'
 export default class Renderer extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {width:0, height:0}
+    this.state = {
+      width:0,
+      height:0,
+      platform: new THREE.SphereGeometry( 20, 170, 170 ),
+      shading: new THREE.MeshPhongMaterial( { color: 0x4200ff , flatShading: true } )}
   }
 
   render() {
     const {style={}} = this.props
-    const {renderer, width, height} = this.state
+    const {renderer, width, height, platform, shading} = this.state
     return <canvas ref={this.canvasDidMount} style={style}>
       {React.Children.map(this.props.children,
         function(child) {
